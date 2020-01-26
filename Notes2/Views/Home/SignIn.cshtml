@@ -1,0 +1,12 @@
+﻿@model SignInVM
+
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input class="form-control" asp-for="Email" />
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+
+
+</form>

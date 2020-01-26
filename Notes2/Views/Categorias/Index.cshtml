@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Notes2.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Categorias</h2>
+
+<p>
+    <a class="btn btn-outline-dark" asp-action="AddEdit">Incluir</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Descrição</th>
+            <th>Criação</th>
+            <th>Notas</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+                <td>@Html.DisplayFor(modelItem => item.DataCadastro)</td>
+                <td><a asp-controller="Notas" asp-action="Index" asp-route-categoria="@item.Id">@Html.DisplayFor(modelItem => item.Notas.Count)</a></td>
+                <td>
+                    <a class="btn btn-outline-dark" asp-action="AddEdit" asp-route-id="@item.Id">Alterar</a>
+                    <a class="btn btn-outline-danger" onclick="excluir(@item.Id)">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function excluir(id)
+    {
+        if (confirm(`Deseja realmente excluir id ${id}?`))
+        {
+            window.location.href = '@Url.Action("Delete", "Categorias")/' + id;
+        };
+    };
+</script>

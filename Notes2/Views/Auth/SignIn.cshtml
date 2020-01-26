@@ -1,0 +1,36 @@
+﻿@model UsuarioSignInVM
+
+<form method="post">
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Senha"></label>
+        <input asp-for="Senha" class="form-control" />
+        <span asp-validation-for="Senha" class="text-danger"></span>
+    </div>
+
+    <div class="form-check">
+        <input asp-for="Lembrar" checked />
+        <label class="form-check-label" asp-for="Lembrar"></label>
+    </div>
+
+    <p>
+
+    </p>
+
+    <div>
+        <button class="btn btn-outline-info" type="submit">Entrar</button>
+        <a class="btn btn-outline-info" asp-controller="Usuarios" asp-action="NovoUsuario">Quero me cadastrar</a>
+    </div>
+</form>
+
+@section scripts {
+    <script src="~/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes2 | @ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/estilo.css" rel="stylesheet" asp-append-version="true" />
+    @*<link href="~/node_modules/toastr/build/toastr.min.css" rel="stylesheet" />*@
+
+</head>
+<body class="d-flex flex-column h-100">
+
+    <header>
+        <partial name="_menuTop" />;
+    </header>
+
+    <main role="main" class="flex-shrink-0">
+
+        <div class="container">
+            @if (TempData["Msg-Success"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["Msg-Success"]
+                </div>
+            }
+
+            @if (TempData["Msg-Error"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["Msg-Error"]
+                </div>
+            }
+
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <span class="text-muted">&copy;2019</span>
+        </div>
+    </footer>
+
+    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/node_modules/toastr/build/toastr.min.js"></script>*@
+
+    @RenderSection("scripts", false)
+</body>
+</html>
+

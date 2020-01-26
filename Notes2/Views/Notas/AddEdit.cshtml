@@ -1,0 +1,29 @@
+﻿@model NotaEditVM
+
+<form method="post">
+    
+    <div class="form-group">
+        <label asp-for="CategoriaId"></label>
+        <select class="form-control" asp-for="CategoriaId" asp-items="ViewBag.Categorias" autofocus>
+            <option value="0">Selecione...</option>
+        </select>
+        <span class="text-danger" asp-validation-for="CategoriaId"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Titulo"></label>
+        <input class="form-control" asp-for="Titulo" />
+        <span class="text-danger" asp-validation-for="Titulo"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Descricao"></label>
+        <textarea class="form-control" rows="10" asp-for="Descricao"></textarea>
+        <span class="text-danger" asp-validation-for="Descricao"></span>
+    </div>
+
+    <div>
+        <button class="btn btn-outline-dark" type="submit">Salvar</button>
+        <a class="btn btn-outline-danger" asp-action="Index">Cancelar</a>
+    </div>
+</form>

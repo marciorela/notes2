@@ -1,0 +1,42 @@
+﻿@model NotaEditVM
+
+<form method="post">
+
+    <div class="form-group">
+        <select class="form-control" name="categoria" readonly>
+            @foreach (Categoria item in ViewBag.Categorias)
+            {
+                if (ViewBag.categoriaId == item.Id)
+                {
+            <option selected="@(ViewBag.categoriaId == item.Id)" value="@item.Id">@item.Descricao</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Titulo"></label>
+        <input class="form-control" asp-for="Titulo" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Descricao"></label>
+        <textarea class="form-control" rows="10" asp-for="Descricao" readonly></textarea>
+    </div>
+
+    <div>
+        <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
+        <a class="btn btn-outline-dark" asp-action="AddEdit">Alterar</a>
+        <a class="btn btn-outline-danger" onclick="excluir(@ViewBag.NoteId)">Excluir</a>
+    </div>
+</form>
+
+<script>
+    function excluir(id)
+    {
+        if (confirm('Deseja realmente excluir?'))
+        {
+            window.location.href = '@Url.Action("Delete", "Notas")/' + id;
+        };
+    };
+</script>

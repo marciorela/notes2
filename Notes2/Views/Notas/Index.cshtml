@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Nota>
+@*@{
+        ViewData["Title"] = "Index";
+    }*@
+
+<h1>Notas</h1>
+
+<form method="get">
+
+    <div class="div_pesquisa">
+        <input class="form-control" type="text" name="buscar" value="@ViewBag.searchString" placeholder="Digite sua pesquisa..." autofocus />
+        <br />
+        <select class="form-control" name="categoria">
+            <option value="0">Todas as categorias</option>
+            @foreach (Categoria item in ViewBag.Categorias)
+            {
+                <option selected="@(ViewBag.categoriaId==item.Id)" value="@item.Id">@item.Descricao</option>
+            }
+        </select>
+    </div>
+    <input type="submit" class="btn btn-outline-dark" value="Pesquisar" />
+    <input type="submit" class="btn btn-outline-dark" asp-action="AddEdit" value="Adicionar" />
+    @*<a class="btn btn-outline-dark" asp-action="AddEdit">Adicionar</a>*@
+
+    <br />
+    <br />
+</form>
+
+<div>
+    <table>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="list-block">
+                            <a class="titulo" asp-action="Detail" asp-route-id="@item.Id">@item.Titulo</a>
+                            <div class="descricao">
+                                @item.Descricao
+                            </div>
+                                <a class="categoria_mini" asp-controller="Notas" asp-action="Index" asp-route-categoria="@item.CategoriaId">@item.Categoria.Descricao</a>
+                            <div class="data">
+                                @item.DataCadastro.ToString(CultureInfo.CreateSpecificCulture("pt-BR"))
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
